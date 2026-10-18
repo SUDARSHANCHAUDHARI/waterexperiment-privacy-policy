@@ -47,7 +47,7 @@ WaterExperiment ("we," "our," or "us") is an Android app. WaterExperiment is an 
 ## Data Sharing
 
 ### Family Groups
-- WaterExperiment does not use MyFamilyTracker-style family groups unless explicitly described in this policy.
+- WaterExperiment does not use family groups unless explicitly described in this policy.
 - If this app includes pairing, sharing, or collaboration features, data is shared only with the people or services required for the feature you choose.
 - You control feature use through the app settings, permissions, account controls, or platform settings.
 
