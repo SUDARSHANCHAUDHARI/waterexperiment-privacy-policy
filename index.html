@@ -84,10 +84,10 @@
       <tbody>
       <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>WorkManager</td><td>Lets a library check whether a network exists. It does <strong>not</strong> grant network access, and without <code>INTERNET</code> nothing can be sent</td></tr>
       <tr><td><code>WAKE_LOCK</code></td><td>WorkManager</td><td>Lets a scheduled reminder finish without the device sleeping mid-task</td></tr>
-      <tr><td><code>FOREGROUND_SERVICE</code>, <code>BIND_JOB_SERVICE</code></td><td>WorkManager</td><td>How Android runs scheduled background work</td></tr>
-      <tr><td><code>BIND_REMOTEVIEWS</code></td><td>Glance</td><td>Required to draw the home-screen widget</td></tr>
-      <tr><td><code>DUMP</code></td><td>a build-time library</td><td>Diagnostic permission. Android grants it only to system apps, so it has no effect here</td></tr>
+      <tr><td><code>FOREGROUND_SERVICE</code></td><td>WorkManager</td><td>How Android runs scheduled background work</td></tr>
       </tbody></table>
+      <p>So the App declares two permissions and the finished build requests five.</p>
+      <p>Three other permission names — <code>BIND_JOB_SERVICE</code>, <code>BIND_REMOTEVIEWS</code> and <code>DUMP</code> — also appear inside the merged manifest, but not as requests. They sit on the service and widget components that WorkManager and Glance contribute, as a requirement on anything trying to call those components. The App is not granted them and they do not appear in its permission list.</p>
       <p><strong><code>INTERNET</code> is absent from the finished app too.</strong> Verified against the merged manifest, not just the App's own file — so the statement that the App cannot transmit your data holds for the shipped build.</p>
       <h3>No microphone access</h3>
       <p>The ritual offers a "speak" option, which means you say your intention aloud yourself. <strong>The App does not record audio.</strong> It declares no <code>RECORD_AUDIO</code> permission and contains no <code>SpeechRecognizer</code>, <code>MediaRecorder</code> or <code>AudioRecord</code> usage. Choosing "speak" records only that you chose it, not anything you said.</p>
@@ -140,7 +140,7 @@
       <li><strong>Stated plainly that the app cannot transmit data.</strong> It declares no <code>INTERNET</code> permission, verified against the merged manifest rather than the app's own file.</li>
       <li><strong>Added an explicit statement that there is no microphone access.</strong> The ritual offers a "speak" option, which means you say your intention aloud yourself. No <code>RECORD_AUDIO</code> permission is declared and no <code>SpeechRecognizer</code>, <code>MediaRecorder</code> or <code>AudioRecord</code> exists in the app. Silence on this invited the wrong conclusion.</li>
       <li><strong>Removed scaffold sections</strong> for location data and location sharing, which did not apply.</li>
-      <li><strong>Listed the permissions Android libraries merge in</strong> — <code>ACCESS_NETWORK_STATE</code>, <code>WAKE_LOCK</code>, <code>FOREGROUND_SERVICE</code> and <code>BIND_JOB_SERVICE</code> from WorkManager, <code>BIND_REMOTEVIEWS</code> from Glance, and <code>DUMP</code>.</li>
+      <li><strong>Listed the permissions Android libraries merge in</strong> — <code>ACCESS_NETWORK_STATE</code>, <code>WAKE_LOCK</code> and <code>FOREGROUND_SERVICE</code>, all from WorkManager. The app declares two and the finished build requests five. An earlier draft of this section also listed <code>BIND_JOB_SERVICE</code>, <code>BIND_REMOTEVIEWS</code> and <code>DUMP</code> as permissions the app carries; they appear in the merged manifest only as requirements guarding WorkManager's and Glance's own components, never as requests, so they are not in the app's permission list and have been removed.</li>
       <li><strong>Added a health disclaimer,</strong> since the app logs water intake and is not a medical device.</li>
       </ul>
       <hr>
